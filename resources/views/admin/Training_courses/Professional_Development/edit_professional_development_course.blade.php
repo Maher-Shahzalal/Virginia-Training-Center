@@ -1,0 +1,72 @@
+@extends('_layouts.Master')
+
+@section('title')
+    Edit Professional Development Courses
+@endsection
+
+@section('content')
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <strong>Edit Professional Development Course</strong>
+            </div>
+            @foreach($Professional_Development as $professional_development)
+            <div class="card-body card-block">
+                <form action="../{{$professional_development->id}}" method="POST" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    <div class="form-group">
+                        <label > Name of Professional Development course </label>
+                        <input type="text"  name="professional_development_course_name" class="@error('professional_development_course_name')is-invalid @enderror form-control" placeholder="{{ $professional_development->professional_development_course_name }}" >
+                        @error('professional_development_course_name')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label > description of Professional Development course </label>
+                        <input type="text"  name="professional_development_course_description" class="@error('professional_development_description')is-invalid @enderror form-control" placeholder="{{ $professional_development->professional_development_course_description }}" >
+                        @error('professional_development_course_description')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label > Price of Professional Development course </label>
+                        <input type="number"  name="professional_development_course_price" class="@error('professional_development_course_price')is-invalid @enderror form-control" placeholder="{{ $professional_development->professional_development_course_price }}" >
+                        @error('professional_development_course_price')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="media_image"> Name of Professional Development course teacher </label>
+                        <input type="text"  name="professional_development_course_teacher_name" class="@error('professional_development_course_teacher_name')is-invalid @enderror form-control" placeholder="{{ $professional_development->professional_development_course_teacher_name }}">
+                        @error('professional_development_course_teacher_name')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label for="media_image"> Upload Image </label>
+                        <input type="file" class="@error('image')is-invalid @enderror form-control" name="image">
+                        @error('image')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-success btn-sm">
+                            <i class="fa fa-dot-circle-o">Edit</i>
+                        </button>
+                        @endforeach
+                    </div>
+                </form>
+            </div>
+        </div>
+@endsection('content')
+
